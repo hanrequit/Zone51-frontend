@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
       name: form.querySelector("input[name='name']").value,
       email: form.querySelector("input[name='email']").value,
       address: form.querySelector("textarea[name='address']").value,
-      cartItems: cart
+      items: cart
     };
 
     fetch(`${BACKEND_URL}/api/sale`, {
