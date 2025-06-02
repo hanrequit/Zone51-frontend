@@ -233,13 +233,15 @@ function handleCheckoutForm() {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const formData = {
-      name: form.name.value,
-      email: form.email.value,
-      address: form.address.value,
-      cartItems: JSON.parse(localStorage.getItem("cart")) || [],
-      timestamp: new Date().toISOString()
-    };
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const formData = {
+  name: form.name.value,
+  email: form.email.value,
+  address: form.address.value,
+  items: cart, // <-- match backend
+  timestamp: new Date().toISOString()
+};
 
     fetch(`${BACKEND_URL}/api/sale`, {
       method: "POST",
@@ -257,6 +259,13 @@ function handleCheckoutForm() {
         localStorage.removeItem("cart");
         alert("Order placed successfully!");
         window.location.href = "index.html";
+      })
+      .then(async res => {
+        if (!res.ok) {
+          const errMsg = await res.text();
+          throw new Error(errMsg);
+        }
+        return res.json();
       })
       .catch(err => {
         console.error("Checkout error:", err);
