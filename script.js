@@ -314,6 +314,8 @@ function renderSalesReport() {
 
   reportContainer.innerHTML = "";
 
+  let grandTotal = 0;
+
   sales.forEach(sale => {
     const saleDiv = document.createElement("div");
     saleDiv.className = "sale-record";
@@ -321,16 +323,23 @@ function renderSalesReport() {
     const date = new Date(sale.timestamp).toLocaleString();
 
     let itemsHTML = "<ul>";
+    let saleTotal = 0;
+
     sale.items.forEach(item => {
-      itemsHTML += `<li>${item.name} - Qty: ${item.quantity} - R${(item.price * item.quantity).toFixed(2)}</li>`;
+      const itemTotal = item.price * item.quantity;
+      saleTotal += itemTotal;
+      itemsHTML += `<li>${item.name} - Qty: ${item.quantity} - R${itemTotal.toFixed(2)}</li>`;
     });
     itemsHTML += "</ul>";
+
+    grandTotal += saleTotal;
 
     saleDiv.innerHTML = `
       <h4>Order for ${sale.name} (${sale.email})</h4>
       <p>Address: ${sale.address}</p>
       <p>Date: ${date}</p>
       <p>Items: ${itemsHTML}</p>
+      <p><strong>Order Total: R${saleTotal.toFixed(2)}</strong></p>
       <hr>
     `;
 
@@ -339,5 +348,14 @@ function renderSalesReport() {
 
   if (sales.length === 0) {
     reportContainer.innerHTML = "<p>No sales to report.</p>";
+  } else {
+    // Add grand total summary
+    const totalDiv = document.createElement("div");
+    totalDiv.className = "sales-grand-total";
+    totalDiv.innerHTML = `
+      <h3>Total Revenue: R${grandTotal.toFixed(2)}</h3>
+    `;
+    reportContainer.appendChild(totalDiv);
   }
 }
+
