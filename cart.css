@@ -1,0 +1,286 @@
+/* ===== General Layout (Shared) ===== */
+body {
+  color: #39FF14;
+  background-color: black;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 0px 30px 30px 20px;
+  margin: 0;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 100;
+  transition: background-image 0.5s ease, color 0.5s ease;
+}
+
+/* ==== Theme button ==== */
+
+.theme-toggle-wrapper {
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+.toggle-switch {
+  background: #111;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  height: 40px;
+  width: 80px;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+.toggle-switch .ball {
+  background-color: white;
+  border-radius: 50%;
+  height: 27px;
+  width: 27px;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.toggle-switch .sun,
+.toggle-switch .moon {
+  font-size: 22px;
+  z-index: 2;
+  width: 50%;
+  text-align: center;
+  color: #fff;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"]:checked + .toggle-switch .ball {
+  transform: translateX(39px);
+}
+
+
+
+/* ===== Fonts ===== */
+@font-face {
+  font-family: Codega;
+  src: url(assets/codega.ttf);
+}
+
+.font {
+  font-family: "Codega", fantasy,sans-serif;
+}
+
+.cart-header,
+.cart-item {
+  display: grid;
+  grid-template-columns: 100px 1fr 80px 100px 100px 100px;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cart-header {
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 15px 10px;
+}
+
+.cart-item {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #eee;
+  transition: background-color 0.2s ease;
+}
+
+.cart-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.product-image img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.product-quantity input {
+  width: 60px;
+  text-align: center;
+}
+
+
+.product-removal button {
+  background-color: #b22222; /* Firebrick (dull red) */
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+.product-removal button:hover {
+  background-color: #ff073a; /* Neon red */
+  box-shadow: 0 0 8px #ff073a,
+              0 0 16px #ffffff,
+              0 0 24px #ff073a;
+  transform: scale(1.05);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 10; /* Make sure it's above background */
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.storebutton {
+  box-shadow: 0 0 8px 2px #39FF14;
+  transition: box-shadow 0.3s ease-in-out;
+  background-color: transparent;
+  color: #39FF14;
+  padding: 10px;
+  border: 2px solid transparent;
+  border-image: linear-gradient(45deg, #00ffff, #ff00ff, #39ff14);
+  border-image-slice: 1;
+  font-weight: bold;
+  text-shadow: 0 0 5px #39FF14;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.storebutton:hover {
+  background: linear-gradient(45deg, #00ffff33, #ff00ff33);
+  color: #ffffff;
+  box-shadow: 0 0 20px #39FF14;
+}
+
+.totals {
+    text-align: right;
+}
+
+.totals-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: #39FF14;
+}
+
+footer {
+  padding: 15px 20px;
+  color: #39FF14;
+  background: transparent;
+  border: 2px solid transparent;
+  border-image: linear-gradient(45deg, #00ffff, #ff00ff, #39ff14);
+  border-image-slice: 1;
+  font-weight: bold;
+  text-shadow: 0 0 5px #39FF14;
+  text-align: center;
+  letter-spacing: 4px;
+  transition: all 0.3s ease-in-out;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrapper {
+  flex: 1;
+}
+
+.checkout {
+  display: block;
+  margin: 20px auto; /* This centers it horizontally */
+  padding: 12px 24px;
+  background-color: #39FF14;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 200px; /* Adjust this value to make it wider */
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.checkout:hover {
+  background-color: #00ff99;
+  box-shadow: 0 0 10px #39FF14;
+}
+
+.logo {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #39FF14;
+  background: transparent;
+  border: 2px solid transparent;
+  border-image: linear-gradient(45deg, #00ffff, #ff00ff, #39ff14);
+  border-image-slice: 1;
+  text-decoration: none;
+  font-weight: bold;
+  text-shadow: 0 0 5px #39FF14;
+  transition: all 0.3s ease-in-out;
+}
+
+.logo:hover {
+  background: linear-gradient(45deg, #00ffff33, #ff00ff33);
+  color: #ffffff;
+  box-shadow: 0 0 20px #39FF14;
+}
+
+.logo {
+  font-size: 42px;
+  font-family: "Codega", fantasy, sans-serif;
+}
+
+video#lightvideo,
+video#darkvideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1; /* Keeps video behind all content */
+  pointer-events: none;
+  transition: opacity 0.8s ease-in-out;
+}
+
+video#lightvideo {
+  opacity: 1;
+}
+video#darkvideo {
+  opacity: 0;
+}
+
+body.dark video#lightvideo {
+  opacity: 0;
+}
+body.dark video#darkvideo {
+  opacity: 1;
+}

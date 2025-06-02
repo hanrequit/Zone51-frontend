@@ -1,0 +1,313 @@
+/* ===== General Layout (Shared) ===== */
+body {
+  color: #39FF14;
+  background-color: black;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 0px 30px 30px 20px;
+  margin: 0;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 100;
+  transition: background-image 0.5s ease, color 0.5s ease;
+}
+
+/* ===== Header ===== */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+header .button-container {
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;       
+  gap: 10px;                              
+}
+
+/* ===== Buttons ===== */
+button {
+  box-shadow: 0 0 8px 2px #39FF14;
+  transition: box-shadow 0.3s ease-in-out;
+  background-color: transparent;
+  color: #39FF14;
+  padding: 10px;
+  border: 2px solid transparent;
+  border-image: linear-gradient(45deg, #00ffff, #ff00ff, #39ff14);
+  border-image-slice: 1;
+  font-weight: bold;
+  text-shadow: 0 0 5px #39FF14;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+button:hover {
+  box-shadow: 0 0 20px 6px #39FF14;
+  background-color: rgba(57, 255, 20, 0.1);
+}
+
+.category-btn, .add-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  width: auto;
+}
+
+.category-btn:hover, .add-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ===== Product Grid ===== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 30px;
+  align-items: stretch;
+}
+
+/* ===== Product Card ===== */
+.product-card {
+  background-color: transparent;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  border: 2px solid transparent;
+  border-image: linear-gradient(45deg, #00ffff, #ff00ff, #39ff14);
+  border-image-slice: 1;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 10px #39ff14;
+}
+
+.product-card:hover {
+  background: linear-gradient(45deg, #00ffff33, #ff00ff33);
+  box-shadow: 0 0 20px #39ff14;
+}
+
+.product-card img {
+  background-color: transparent;
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.product-card h3,
+.product-card p {
+  width: 100%;
+  text-align: center;
+  margin: 5px 0;
+  color: #39FF14; 
+  text-shadow: 0 0 3px #000; 
+}
+
+.add-btn {
+  margin-top: auto;
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
+}
+
+/* ===== Category Button Images ===== */
+.category-btn img {
+  background-color: #39FF14;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+/* ===== Logo Styles ===== */
+.logo a {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #39FF14;
+  background: transparent;
+  border: 2px solid transparent;
+  border-image: linear-gradient(45deg, #00ffff, #ff00ff, #39ff14);
+  border-image-slice: 1;
+  text-decoration: none;
+  font-weight: bold;
+  text-shadow: 0 0 5px #39FF14;
+  transition: all 0.3s ease-in-out;
+}
+
+.logo a:hover {
+  background: linear-gradient(45deg, #00ffff33, #ff00ff33);
+  color: #ffffff;
+  box-shadow: 0 0 20px #39FF14;
+}
+
+.logo {
+  font-size: 76px;
+  font-family: "Codega", fantasy, sans-serif;
+}
+
+/* ===== Footer ===== */
+footer {
+  padding: 15px 20px;
+  color: #39FF14;
+  background: transparent;
+  border: 2px solid transparent;
+  border-image: linear-gradient(45deg, #00ffff, #ff00ff, #39ff14);
+  border-image-slice: 1;
+  font-weight: bold;
+  text-shadow: 0 0 5px #39FF14;
+  text-align: center;
+  letter-spacing: 4px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* ===== Fonts ===== */
+@font-face {
+  font-family: Codega;
+  src: url(assets/codega.ttf);
+}
+
+.font {
+  font-family: "Codega", fantasy,sans-serif;
+}
+
+/* ===== Background ===== */
+video#lightvideo,
+video#darkvideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+  transition: opacity 0.8s ease-in-out;
+}
+
+video#lightvideo {
+  opacity: 1;
+}
+video#darkvideo {
+  opacity: 0;
+}
+
+body.dark video#lightvideo {
+  opacity: 0;
+}
+body.dark video#darkvideo {
+  opacity: 1;
+}
+
+/* ==== Cart Button ==== */
+.cart {
+  background-color: transparent;
+  color: #39FF14;
+  border: 2px solid transparent;
+  border-image: linear-gradient(45deg, #00ffff, #ff00ff, #39ff14);
+  border-image-slice: 1;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0 8px 2px #39FF14;
+  text-shadow: 0 0 5px #39FF14;
+  transition: all 0.3s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart:hover {
+  background-color: rgba(57, 255, 20, 0.1);
+  box-shadow: 0 0 20px 6px #39FF14;
+  color: #ffffff;
+  border-image: linear-gradient(45deg, #39ff14, #00ffff, #ff00ff);
+}
+
+.cart svg {
+  fill: #39FF14;
+  transition: fill 0.3s ease-in-out;
+}
+
+.cart:hover svg {
+  fill: #ffffff;
+}
+
+/* ==== Theme button ==== */
+
+.theme-toggle-wrapper {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+.toggle-switch {
+  background: #111;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  height: 40px;
+  width: 80px;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+.toggle-switch .ball {
+  background-color: white;
+  border-radius: 50%;
+  height: 27px;
+  width: 27px;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.toggle-switch .sun,
+.toggle-switch .moon {
+  font-size: 22px;
+  z-index: 2;
+  width: 50%;
+  text-align: center;
+  color: #fff;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"]:checked + .toggle-switch .ball {
+  transform: translateX(39px);
+}
+
+.bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zone 51</title>
+  <link rel="stylesheet" href="index.css">
+   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+</head>
+<body>
+     <video id="lightvideo" loop muted playsinline>
+  <source src="assets/lightmode.webm" type="video/webm">
+</video>
+
+<video id="darkvideo" autoplay loop muted playsinline>
+  <source src="assets/darkmode.webm" type="video/webm">
+</video>
+<header>
+  <div class="logo font"><a href="index.html">Zone 51</a></div>
+  <div class="button-container">
+    <a href="cart.html" class="cart">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-12.4-2l-1.6-6h15.001l-2.247 5.253a1.996 1.996 0 01-1.82 1.257h-8.334z"/></svg>
+    Cart
+    </a>
+    <div class="theme">
+      <input type="checkbox" id="theme-toggle" />
+      <label for="theme-toggle" class="toggle-switch">
+        <span class="sun">🌞</span>
+        <span class="moon">🌜</span>
+        <span class="ball"></span>
+      </label>
+    </div>
+  </div>
+</header>
+
+  <main>
+    <div id="product-container" class="product-grid">
+      <!-- JS dynamically injects content here -->
+    </div>
+  </main>
+  <footer class="font">
+      <p>Zone 51&copy;2025 All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+            // Theme Toggle Logic
+        document.addEventListener("DOMContentLoaded", () => {
+          const toggle = document.getElementById("theme-toggle");
+          const body = document.body;
+
+          // Load preference from localStorage
+          if (localStorage.getItem("theme") === "dark") {
+            body.classList.add("dark");
+            toggle.checked = true;
+          }
+
+          toggle.addEventListener("change", () => {
+            body.classList.toggle("dark");
+            if (body.classList.contains("dark")) {
+              localStorage.setItem("theme", "dark");
+            } else {
+              localStorage.setItem("theme", "light");
+            }
+          });
+        });
+    </script>
+    <a href="https://zone51-backend.onrender.com/admin" target="_blank">Admin</a>
+</body>
+ 
+</html>

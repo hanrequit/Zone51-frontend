@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="checkout.css">
+   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+   
+<body>
+
+    <video id="lightvideo" loop muted playsinline>
+      <source src="assets/lightmode.webm" type="video/webm">
+    </video>
+
+    <video id="darkvideo" autoplay loop muted playsinline>
+      <source src="assets/darkmode.webm" type="video/webm">
+    </video>
+  <header class="header">
+        <h1 class="font logo">Checkout</h1>
+
+        <div class="button-container">
+          <nav><button onclick="window.location.href='index.html'" class="backtostore">← Back to Store</button></nav>
+          <div class="theme-toggle-wrapper">
+            <input type="checkbox" id="theme-toggle" />
+            <label for="theme-toggle" class="toggle-switch">
+              <span class="sun">🌞</span>
+              <span class="moon">🌜</span>
+              <span class="ball"></span>
+            </label>
+          </div>
+        </div>
+      </header>
+
+  <main>
+    <form id="checkout-form">
+      <div class="confirm">
+        <label class="form-row">Name: <input type="text" name="name" required></label><br>
+        <label class="form-row">Email: <input type="email" name="email" required></label><br>
+        <label class="form-row">Address: <textarea name="address" required></textarea></label><br>
+      </div>
+      <button type="submit" class="checkout">Confirm Order</button>
+    </form>
+  </main>
+
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const BACKEND_URL = "https://zone51-backend.onrender.com";
+  const form = document.getElementById("checkout-form");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    if (cart.length === 0) {
+      alert("Your cart is empty.");
+      return;
+    }
+
+    const formData = {
+      name: form.querySelector("input[name='name']").value,
+      email: form.querySelector("input[name='email']").value,
+      address: form.querySelector("textarea[name='address']").value,
+      cartItems: cart
+    };
+
+    fetch(`${BACKEND_URL}/api/sale`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(data => {
+      alert("Order confirmed! " + (data.message || ""));
+      localStorage.removeItem("cart");
+      window.location.href = "index.html";
+    })
+    .catch(err => {
+      console.error("Checkout failed:", err);
+      alert("Something went wrong during checkout.");
+    });
+  });
+});
+</script>
+  <footer class="footer">
+    <p>Zone 51&copy; All rights reserved.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
