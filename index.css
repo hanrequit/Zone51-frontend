@@ -310,4 +310,98 @@ input[type="checkbox"]:checked + .toggle-switch .ball {
 
 .hidden {
   display: none;
+} 
+
+/* Responsive styles for mobile devices */
+/* Place this at the end of your CSS files */
+
+/*// filepath: c:\Users\hanre\OneDrive\Documents\Coding\HTML\Zone51\frontend\Zone51-frontend\cart.css
+// and
+// filepath: c:\Users\hanre\OneDrive\Documents\Coding\HTML\Zone51\frontend\Zone51-frontend\index.css
+// and
+// filepath: c:\Users\hanre\OneDrive\Documents\Coding\HTML\Zone51\frontend\Zone51-frontend\checkout.css*/
+
+@media (max-width: 700px) {
+  body {
+    padding: 0 5px 20px 5px;
+    font-size: 16px;
+  }
+
+  header, .button-container {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.5rem 0.5rem;
+    gap: 8px;
+  }
+
+  .logo {
+    font-size: 28px;
+    padding: 6px 8px;
+    text-align: center;
+  }
+
+  .cart-header,
+  .cart-item {
+    grid-template-columns: 1fr 60px 60px 60px;
+    font-size: 14px;
+    padding: 6px 0;
+  }
+
+  .cart-header {
+    padding: 8px 4px;
+  }
+
+  .product-image img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .product-quantity input {
+    width: 40px;
+  }
+
+  .storebutton, .checkout, .backtostore {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px 0;
+  }
+
+  .totals {
+    text-align: left;
+    font-size: 15px;
+  }
+
+  .confirm {
+    max-width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    text-align: left;
+    gap: 4px;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 10px;
+  }
+
+  .product-card img {
+    height: 120px;
+  }
+
+  footer {
+    font-size: 12px;
+    padding: 8px 5px;
+    letter-spacing: 2px;
+  }
+
+  .theme-toggle-wrapper {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
 }
