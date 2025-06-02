@@ -43,46 +43,6 @@
       <button type="submit" class="checkout">Confirm Order</button>
     </form>
   </main>
-
-  <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const BACKEND_URL = "https://zone51-backend.onrender.com";
-  const form = document.getElementById("checkout-form");
-
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    if (cart.length === 0) {
-      alert("Your cart is empty.");
-      return;
-    }
-
-    const formData = {
-      name: form.querySelector("input[name='name']").value,
-      email: form.querySelector("input[name='email']").value,
-      address: form.querySelector("textarea[name='address']").value,
-      items: cart
-    };
-
-    fetch(`${BACKEND_URL}/api/sale`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData)
-    })
-    .then(res => res.json())
-    .then(data => {
-      alert("Order confirmed! " + (data.message || ""));
-      localStorage.removeItem("cart");
-      window.location.href = "index.html";
-    })
-    .catch(err => {
-      console.error("Checkout failed:", err);
-      alert("Something went wrong during checkout.");
-    });
-  });
-});
-</script>
   <footer class="footer">
     <p>Zone 51&copy; All rights reserved.</p>
   </footer>
