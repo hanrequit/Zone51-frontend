@@ -233,23 +233,26 @@ function handleCheckoutForm() {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-const formData = {
-  name: form.name.value,
-  email: form.email.value,
-  address: form.address.value,
-  items: cart, // <-- match backend
-  timestamp: new Date().toISOString()
-};
+    const formData = {
+      name: form.name.value,
+      email: form.email.value,
+      address: form.address.value,
+      items: cart, // <-- match backend
+      timestamp: new Date().toISOString()
+    };
 
     fetch(`${BACKEND_URL}/api/sale`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData)
     })
-      .then(res => {
-        if (!res.ok) throw new Error("Failed to save sale");
+      .then(async res => {
+        if (!res.ok) {
+          const errMsg = await res.text();
+          throw new Error(errMsg);
+        }
         return res.json();
       })
       .then(() => {
@@ -259,13 +262,6 @@ const formData = {
         localStorage.removeItem("cart");
         alert("Order placed successfully!");
         window.location.href = "index.html";
-      })
-      .then(async res => {
-        if (!res.ok) {
-          const errMsg = await res.text();
-          throw new Error(errMsg);
-        }
-        return res.json();
       })
       .catch(err => {
         console.error("Checkout error:", err);
@@ -325,7 +321,7 @@ function renderSalesReport() {
     const date = new Date(sale.timestamp).toLocaleString();
 
     let itemsHTML = "<ul>";
-    sale.cartItems.forEach(item => {
+    sale.items.forEach(item => {
       itemsHTML += `<li>${item.name} - Qty: ${item.quantity} - R${(item.price * item.quantity).toFixed(2)}</li>`;
     });
     itemsHTML += "</ul>";
